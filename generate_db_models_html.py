@@ -189,7 +189,7 @@ for model_name in models_list:
 
     print(f'{i}/{len(models_list)} -> {model_name}')
 
-    html_struct = html_struct + f'<div data-track-content data-content-name="{model_name}" data-content-piece="DreamBooth Model Item"><h3 class="dreambooth-model-title"><a href="#{model_name}">{model_name}</a></h3>'
+    html_struct = html_struct + f'<div data-track-content data-content-name="{model_name}" data-content-piece="DreamBooth Model Item"><h3 class="dreambooth-model-title" id="{model_name}"><a href="#{model_name}">{model_name}</a></h3>'
 
     # Get the concept images from the huggingface repo
     restricted = False
