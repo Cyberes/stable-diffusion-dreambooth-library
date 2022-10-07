@@ -1,0 +1,53 @@
+name: Generate Static HTML
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 12/12 * * *' # 00:00 and 12:00
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: BSFishy/pip-action@v1
+      with:
+        packages: |
+          requests
+          huggingface_hub
+          pillow
+          bs4
+    - uses: actions/checkout@v3
+      with:
+        repository: ${{ github.repository }}
+
+    - name: Generate Models Webpage
+      run: python ${{ github.workspace }}/generate_db_models_html.py ${{ github.workspace }}/index.html
+      shell: sh
+
+    - name: Commit Changes
+      uses: devops-infra/action-commit-push@master
+      with:
+        github_token: "${{ secrets.GITHUB_TOKEN }}"
+        add_timestamp: false
+        commit_prefix: "[AUTO] "
+        commit_message: "Update static page"
+        force: false
+
+  build-and-deploy:
+    needs: generate
+    concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ${{ github.workspace }} # The folder the action should deploy
