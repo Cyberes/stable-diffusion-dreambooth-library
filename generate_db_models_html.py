@@ -291,6 +291,7 @@ html_struct = html_struct + """
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!--<script src="/stable-diffusion-dreambooth-library/jquery.waypoints.min.js"></script>-->
+    <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 """
 
