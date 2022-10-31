@@ -249,7 +249,7 @@ html_struct = html_struct + """
         <code id="modelDownload" class="click-element" data-name="DreamBooth git clone"></code>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -261,7 +261,7 @@ html_struct = html_struct + """
       document.getElementById("gitModalLabel").innerHTML = name;
       $("#modelDownload").html(`git clone ${url}`);
       $("#modelDownload").attr("data-name", url);
-      $("#gitModal").modal();
+      $("#gitModal").modal("show");
     }
 
     document.addEventListener("DOMContentLoaded", () => {
