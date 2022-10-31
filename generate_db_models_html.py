@@ -196,8 +196,7 @@ for model_name in models_list:
     # Get the concept images from the huggingface repo
     restricted = False
     try:
-        files = api.list_repo_files(
-            repo_id=f'sd-dreambooth-library/{model_name}')
+        files = api.list_repo_files(repo_id=f'sd-dreambooth-library/{model_name}')
         concept_images = [i for i in files if i.startswith('concept_images/')]
     except requests.exceptions.HTTPError:
         # Sometimes an author will require you to share your contact info to gain access
@@ -208,16 +207,14 @@ for model_name in models_list:
 <p>
   {model_name} is restricted and you must share your contact information to view this repository.
   <a type="button" class="btn btn-link" href="https://huggingface.co/sd-dreambooth-library/{model_name}/">View Repository</a>
-</p>
-        """
+</p>"""
     else:
         html_struct = html_struct + f"""
 <p>
   <button type="button" class="btn btn-primary" onclick="openModel('{model_name}', 'https://huggingface.co/sd-dreambooth-library/{model_name}/')">Download</button>
   <a type="button" class="btn btn-link" href="https://huggingface.co/sd-dreambooth-library/{model_name}/">View Repository</a>
 </p>
-<div class="row">
-        """
+<div class="row">"""
 
         # Most repos have 3 concept images but some have more or less
         # We gotta make sure only 3 are shown
@@ -232,7 +229,7 @@ for model_name in models_list:
   <img class="thumbnail mx-auto img-fluid" loading="lazy" src="https://huggingface.co/sd-dreambooth-library/{model_name}/resolve/main/{concept_images[x]}">
 </div>
             """
-        html_struct = html_struct + '</div></div>'
+    html_struct = html_struct + '</div></div>'
     i = i + 1
 
 html_struct = html_struct + """
