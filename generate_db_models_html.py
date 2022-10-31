@@ -207,7 +207,7 @@ for model_name in models_list:
 <p>
   {model_name} is restricted and you must share your contact information to view this repository.
   <a type="button" class="btn btn-link" href="https://huggingface.co/sd-dreambooth-library/{model_name}/">View Repository</a>
-</p>"""
+</p></div>"""
     else:
         html_struct = html_struct + f"""
 <p>
@@ -229,7 +229,7 @@ for model_name in models_list:
   <img class="thumbnail mx-auto img-fluid" loading="lazy" src="https://huggingface.co/sd-dreambooth-library/{model_name}/resolve/main/{concept_images[x]}">
 </div>
             """
-    html_struct = html_struct + '</div></div>'
+        html_struct = html_struct + '</div></div>'
     i = i + 1
 
 html_struct = html_struct + """
