@@ -26,7 +26,7 @@ dt = datetime.datetime.now()
 tz = dt.astimezone().tzname()
 
 # Get list of models under the sd-dreambooth-library organization
-for model in api.list_models(author="sd-dreambooth-library"):
+for model in api.list_models(author="sd-dreambooth-library", sort="likes", direction=-1):
     models_list.append(model.modelId.replace('sd-dreambooth-library/', ''))
 models_list.sort()
 
